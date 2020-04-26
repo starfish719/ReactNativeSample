@@ -9,14 +9,17 @@
 import React, { ReactNode } from 'react'
 import { SafeAreaView, StyleSheet, ScrollView, View, Text, TextInput, StatusBar } from 'react-native'
 
-const Cat: () => JSX.Element = () => {
-  const getFullName = (firstName: string, secondName: string, thirdName: string): string => {
-    return firstName + ' ' + secondName + ' ' + thirdName
+interface CatProps {
+  name: string
+}
+const Cat: (props: CatProps) => JSX.Element = (props) => {
+  const getFullName = (firstName: string, secondName: string): string => {
+    return firstName + ' ' + secondName + ' ' + props.name
   }
 
   return (
     <View>
-      <Text>Hello, I am {getFullName('Rum', 'Tum', 'Tugger')}!</Text>
+      <Text>Hello, I am {getFullName('Rum', 'Tum')}!</Text>
     </View>
   )
 }
@@ -27,9 +30,9 @@ const App: () => ReactNode = () => {
       <SafeAreaView>
         <View>
           <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
-            <Cat />
-            <Cat />
-            <Cat />
+            <Cat name="Maru" />
+            <Cat name="Toru" />
+            <Cat name="Spot" />
             <Text>Hello, I am...</Text>
             <TextInput
               style={{
