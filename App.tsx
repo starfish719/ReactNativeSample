@@ -6,20 +6,28 @@
  * @flow strict-local
  */
 
-import React, { ReactNode } from 'react'
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, TextInput, StatusBar } from 'react-native'
+import React, { ReactNode, useState } from 'react'
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, TextInput, StatusBar, Button } from 'react-native'
 
 interface CatProps {
   name: string
 }
 const Cat: (props: CatProps) => JSX.Element = (props) => {
+  const [isHungry, setIsHungry] = useState(true)
   const getFullName = (firstName: string, secondName: string): string => {
     return firstName + ' ' + secondName + ' ' + props.name
   }
 
   return (
     <View>
-      <Text>Hello, I am {getFullName('Rum', 'Tum')}!</Text>
+      <Text>Hello, I am {getFullName('Rum', 'Tum')}, and I am {isHungry ? 'hungry' : 'full'}</Text>
+      <Button
+        onPress={() => {
+          setIsHungry(false);
+        }}
+        disabled={!isHungry}
+        title={isHungry ? "Pour me some milk, please!" : "Thank you!"}
+      />
     </View>
   )
 }
